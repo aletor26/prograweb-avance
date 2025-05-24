@@ -145,7 +145,7 @@ const NavBar = () => {
                         <i className="fas fa-box"></i>
                         Usuarios
                       </Link>
-                      <Link to="/admin/orders" className="menu-item admin-link">
+                      <Link to="/admin/orders/dashboard" className="menu-item admin-link">
                         <i className="fas fa-tasks"></i>
                         Gestión de Pedidos
                       </Link>

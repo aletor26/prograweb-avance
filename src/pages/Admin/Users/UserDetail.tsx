@@ -27,14 +27,20 @@ export default function UserDetail() {
   const [orders, setOrders] = useState<Order[]>([]);
 
   useEffect(() => {
-    const storedUsers = localStorage.getItem('users');
-    const users = storedUsers ? JSON.parse(storedUsers) : [];
-    setDetail(users.find((u: User) => u.id === userId) || null);
+  const storedUsers = localStorage.getItem('users');
+  const users = storedUsers ? JSON.parse(storedUsers) : [];
+  const foundUser = users.find((u: User) => u.id === userId) || null;
+  setDetail(foundUser);
 
-    const storedOrders = localStorage.getItem('orders');
-    const allOrders = storedOrders ? JSON.parse(storedOrders) : [];
-    setOrders(allOrders.filter((o: Order) => o.userId === userId).slice(0, 10));
-  }, [userId]);
+  if (foundUser?.email) {
+    const storedOrders = localStorage.getItem(`orders_${foundUser.email}`);
+    const userOrders = storedOrders ? JSON.parse(storedOrders) : [];
+    setOrders(userOrders.slice(0, 10));
+  } else {
+    setOrders([]);
+  }
+  console.log('Órdenes del usuario:', orders);
+}, [userId]);
 
   if (user?.role !== 'admin') {
     return <div>No autorizado</div>;

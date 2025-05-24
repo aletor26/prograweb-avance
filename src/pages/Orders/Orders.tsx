@@ -15,6 +15,7 @@ interface Order {
     price: number;
   }[];
   shippingDetails: {
+    accountId: string;
     fullName: string;
     email: string;
     address: string;
@@ -142,6 +143,7 @@ const Orders = () => {
               <div className="order-details">
                 <div className="order-section">
                   <h4>Detalles de envío</h4>
+                  <p><b>ID de cuenta:</b> {order.shippingDetails.accountId}</p>
                   <p>{order.shippingDetails.fullName}</p>
                   <p>{order.shippingDetails.address}</p>
                   <p>{order.shippingDetails.city}</p>
@@ -184,4 +186,4 @@ const Orders = () => {
   );
 };
 
-export default Orders; 
+export default Orders;
