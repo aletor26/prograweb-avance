@@ -34,14 +34,13 @@ export default function OrderList() {
     const u = users.find(u => u.id === userId);
     return u ? `${u.name} ${u.lastName || ''}` : '';
   };
-
   const filtered = orders.filter(o => {
     const userName = getUserName(o.userId).toLowerCase();
     return (
       o.id.includes(filter) ||
       userName.includes(filter.toLowerCase())
     );
-  });
+});
 
   if (user?.role !== 'admin') {
     return <div>No autorizado</div>;
